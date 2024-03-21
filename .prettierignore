@@ -1,0 +1,6 @@
+# 忽略目录或文件 
+build 
+coverage 
+
+# 忽略所有 html 文件 
+*.html
