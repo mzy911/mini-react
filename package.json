@@ -6,7 +6,8 @@
   "module": "index.js",
   "scripts": {
     "lint": "eslint --ext .ts,.js,.jsx,.tsx --fix --quiet ./packages",
-    "prepare": "husky"
+    "prepare": "husky",
+    "build:dev": "rm -rf dist && rollup --bundleConfigAsCjs --config scripts/rollup/react.config.js"
   },
   "lint-staged": {
     "*.{ts,js,vue}": [
@@ -20,17 +21,24 @@
   "devDependencies": {
     "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
+    "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-replace": "^5.0.5",
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",
     "eslint": "^8.57.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "prettier": "3.2.5"
+    "prettier": "3.2.5",
+    "rollup": "^4.13.2",
+    "rollup-plugin-generate-package-json": "^3.2.0",
+    "rollup-plugin-typescript2": "^0.36.0"
   },
   "json-comments": {
     "tips": "请安装JSONComments插件为JSON文件提供注释功能, 详见: https://github.com/zhangfisher/json_comments_extension",
     "package.json": {
-      "main": "commonJs规范，包的入口文件"
+      "main": "commonJs规范，包的入口文件",
+      "scripts.build:dev": "使用 bundleConfigAsCjs 处理，提示使用的是 ES module 而并非 CommonJs"
     },
     "packages/react/package.json": {
       "dependencies.shared": "依赖当前项目内的包，固定写法"
